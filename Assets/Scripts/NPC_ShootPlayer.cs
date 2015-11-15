@@ -120,6 +120,8 @@ public class NPC_ShootPlayer : MonoBehaviour {
 		m_HasShootInCycle = true;
 
 		bulletSound = GetComponent<AudioSource>();
+		bulletSound.pitch = Random.Range (0.75f, 1.25f);
+		bulletSound.volume = Random.Range (0.75f, 1.25f);
 		bulletSound.PlayOneShot(bulletAudio[Random.Range (0, bulletAudio.Length)]);
 	}
 		
