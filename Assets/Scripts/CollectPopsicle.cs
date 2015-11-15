@@ -7,7 +7,14 @@ using System.Collections;
 /// </summary>
 public class CollectPopsicle : MonoBehaviour {
 	
-	public GameObject Spawner;	
+	public GameObject Spawner;
+
+	SoundManager mySound;
+
+	void Start (){
+		GameObject myNewSounds = GameObject.Find("AudioObject");
+		mySound = myNewSounds.GetComponent<SoundManager>();
+	}
 	
 	void DoCollect(Collider collider)
 	{
@@ -15,9 +22,11 @@ public class CollectPopsicle : MonoBehaviour {
 		
 		if(collider.gameObject.tag == "Player")
 		{
-			if (!GetComponent<AudioSource>().isPlaying){
-				GetComponent<AudioSource>().Play();
-			}
+			mySound.PlayObjectSoundOnce(this.gameObject);
+
+//			if (!GetComponent<AudioSource>().isPlaying){
+//				GetComponent<AudioSource>().Play();
+//			}
 			Destroy(gameObject,GetComponent<AudioSource>().clip.length);
 			
 			Spawner.GetComponent<Spawner>().BeginSpawning();
