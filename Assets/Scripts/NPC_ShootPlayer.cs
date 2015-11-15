@@ -15,6 +15,9 @@ public class NPC_ShootPlayer : MonoBehaviour {
 	public GameObject Bullet;
 	
 	public Transform BulletParent;
+
+	public AudioClip[] bulletAudio;
+	AudioSource bulletSound;
 	
 	Animator  	m_Animator = null;	
 	GameObject 	m_Player = null;	 	
@@ -114,7 +117,10 @@ public class NPC_ShootPlayer : MonoBehaviour {
 		direction.y = 0;
 		newBullet.GetComponent<Rigidbody>().velocity = Vector3.Normalize(direction)* m_BulletSpeed;								
 		if(BulletParent)newBullet.transform.parent = BulletParent;
-		m_HasShootInCycle = true;				
+		m_HasShootInCycle = true;
+
+		bulletSound = GetComponent<AudioSource>();
+		bulletSound.PlayOneShot(bulletAudio[Random.Range (0, bulletAudio.Length)]);
 	}
 		
 	/// Make the NPC always on floor, even when colliding
