@@ -15,7 +15,9 @@ public class CollectPopsicle : MonoBehaviour {
 		
 		if(collider.gameObject.tag == "Player")
 		{
-			Destroy(gameObject);
+			GetComponent<AudioSource>().Play();
+
+			Destroy(gameObject,1);
 			
 			Spawner.GetComponent<Spawner>().BeginSpawning();
 		}
@@ -23,7 +25,7 @@ public class CollectPopsicle : MonoBehaviour {
 	
 	void OnTriggerStay(Collider collider)
 	{
-		DoCollect (collider);
+//		DoCollect (collider);
 	}
 	
 	void OnTriggerEnter(Collider collider)
